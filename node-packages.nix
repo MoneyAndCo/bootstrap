@@ -6670,7 +6670,13 @@ let
     packageName = "bootstrap";
     version = "4.0.0-beta";
     src = ./.;
-    postInstall = "npm run dist";
+    postInstall = ''
+      npm run dist
+      mkdir $out/css
+      cp $out/lib/node_modules/bootstrap/dist/css/bootstrap.min.css* $out/css
+      rm -r $out/lib
+      zopfli -i1000 $out/css/*
+    '';
     dependencies = [
       sources."autoprefixer-7.1.5"
       (sources."babel-cli-7.0.0-beta.2" // {

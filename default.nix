@@ -13,4 +13,5 @@ in
 import ./node-packages.nix {
   inherit (pkgs) fetchurl fetchgit;
   inherit nodeEnv;
+  globalBuildInputs = [ pkgs.zopfli ];
 }
